@@ -1,9 +1,16 @@
 {
   "name": "touchils",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "kevinzhang2012@live.cn",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Yuxiang Zhang",
   "license": "MIT",
+  "homepage": "https://github.com/kevinzhang2012/touchils.git",
+  "repository": {
+    "url": "https://github.com/kevinzhang2012/touchils.git",
+    "type": "git"
+  },
+  "files": ["dist"],
   "devDependencies": {
     "typescript": "^3.9.2"
   },

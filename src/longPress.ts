@@ -1,7 +1,8 @@
-/**
- * 移动设备 - 长按屏幕事件
- */
-export const long_press = () => {
+ /**
+  * longPress(长按屏幕事件) - 触摸屏幕并保持一定时长后触发事件，长按期间若移动手势则不会触发。
+  * @param t 长按时长，默认500ms
+  */
+export const initLongPress = (t:number = 500) => {
   let timer: number;
   let is_moved = false;
   document.addEventListener("touchstart", (e) => {
@@ -12,13 +13,13 @@ export const long_press = () => {
       const { targetTouches } = e;
       const { clientX, clientY } = targetTouches[0];
       e.target.dispatchEvent(
-        new CustomEvent("long-press", {
+        new CustomEvent("longPress", {
           bubbles: true,
           cancelable: true,
           detail: { clientX, clientY },
         })
       );
-    }, 500);
+    }, t);
   });
   document.addEventListener("touchmove", (e) => {
     if (is_moved) {

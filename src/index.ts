@@ -1,1 +1,1 @@
-export { long_press } from './long-press';
+export { initLongPress } from './longPress';
