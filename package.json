@@ -1,0 +1,13 @@
+{
+  "name": "touchils",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "kevinzhang2012@live.cn",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.2"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
