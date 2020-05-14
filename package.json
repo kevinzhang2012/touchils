@@ -1,6 +1,6 @@
 {
   "name": "touchils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Yuxiang Zhang",
@@ -15,6 +15,7 @@
     "typescript": "^3.9.2"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "build:prod": "rm -rf ./dist; "
   }
 }

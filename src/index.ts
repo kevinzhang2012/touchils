@@ -1,1 +1,1 @@
-export { initLongPress } from './longPress';
+export { longPress } from './events/longPress';
