@@ -1,14 +1,24 @@
 import { TouchilBase } from '../base/TouchilBase';
 import * as I from '../interface';
 
-class LongPress extends TouchilBase implements I.TouchilEvent {
+/**
+* longPress - Pressing the touch screen and hold for spectific time.
+* Event will not be triggered if the gesture moved or touchMove is fired during the hold will.
+*/
+export class LongPress extends TouchilBase implements I.TouchilEvent {
   private _holdTime:number = 500;
   private _timer:number|undefined;
   private _isMoved:boolean = false;
+  private _el:HTMLElement;
+  private _cb:(evt:CustomEvent) => void;
 
   protected readonly _eventName = "longPress";
-  constructor() {
+  constructor(el:HTMLElement, cb:(evt:CustomEvent) => void, holdTime:number = 500) {
     super();
+    this._el = el;
+    this._cb = cb;
+    this._holdTime = holdTime;
+    this.init(this._holdTime);
   }
 
   /**
@@ -19,12 +29,17 @@ class LongPress extends TouchilBase implements I.TouchilEvent {
     try {
       this.initRecord();
       this._holdTime = holdTime;
-      document.addEventListener("touchstart", this.onTouchStart);
+      this._el.addEventListener("touchstart", this.onTouchStart);
       document.addEventListener("touchmove", this.onTouchMove);
       document.addEventListener("touchend", this.onTouchEnd);
+      this._el.addEventListener(this._eventName, this.trigger_cb);
     } catch (e) {
       this.handleError(e);
     }
+  };
+
+  private trigger_cb = (e:any) => {
+    this._cb(e as any);
   };
 
   /**
@@ -32,9 +47,10 @@ class LongPress extends TouchilBase implements I.TouchilEvent {
    */
   public remove = () => {
     this.removeRecord();
-    document.removeEventListener("touchstart", this.onTouchStart);
+    this._el.removeEventListener("touchstart", this.onTouchStart);
     document.removeEventListener("touchmove", this.onTouchMove);
     document.removeEventListener("touchend", this.onTouchEnd);
+    this._el.removeEventListener(this._eventName, this.trigger_cb);
   };
 
   private onTouchStart = (e:TouchEvent) => {
@@ -44,7 +60,7 @@ class LongPress extends TouchilBase implements I.TouchilEvent {
       }
       const { targetTouches } = e;
       const { clientX, clientY } = targetTouches[0];
-      e.target.dispatchEvent(
+      this._el.dispatchEvent(
         new CustomEvent(this._eventName, {
           bubbles: true,
           cancelable: true,
@@ -66,9 +82,3 @@ class LongPress extends TouchilBase implements I.TouchilEvent {
     this._isMoved = false;
   }
 }
-
-/**
-* longPress - Pressing the touch screen and hold for spectific time.
-* Event will not be triggered if the gesture moved or touchMove is fired during the hold will.
-*/
-export const longPress = new LongPress();
