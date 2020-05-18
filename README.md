@@ -6,7 +6,7 @@ Aim to provide workaround event listeners for touch devices(such as 'long press'
 #### Events List
 - *longPress*
 > Pressing the touch screen and hold for spectific time(customizable).
-> Event will not be triggered if the gesture moved or touchMove is fired during the hold will.
+> Event will not be triggered if the gesture moved or touchMove is fired during pressing.
 
 - *more to be implemented... 🤣*
    
