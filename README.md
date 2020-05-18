@@ -1,27 +1,35 @@
 # Touchils - H5 Touch Utils
+[![NPM version](http://img.shields.io/npm/v/touchils.svg?style=flat-square)](https://www.npmjs.org/package/touchils)
 
-Util library for touch devices
+Aim to provide workaround event listeners for touch devices(such as 'long press' event), since some mobile browsers do not fully response to 'click' or 'contextmenu' events expectedly.
 
-# Install
-    // Yarn
-    yarn add touchils
-  
-    // NPM
-    npm install touchils -S
+#### Events List
+- *longPress*
+> Pressing the touch screen and hold for spectific time(customizable).
+> Event will not be triggered if the gesture moved or touchMove is fired during the hold will.
+
+- *more to be implemented... 🤣*
    
+# Install
+`yarn add touchils`
 
+`npm install touchils -S`
 
+# Usage
+(ES Module import only)
 
-# Custom Event Listener
+## Add Event Listener
+``` ts
+import { LongPress } from 'touchils';
 
-    import { LongPress } from 'touchils';
+const longPressEvt = new LongPress(document.getElementByID('test'), (e) => {
+  alert('long press');
+}));
+```
 
-    // Add event listener
-    const longPressEvt = new LongPress(document.getElementByID('test'), (e) => {
-      alert('long press');
-    }));
-    
-    // Remove event listener
-    longPressEvt.remove();
+## Remove Event Listener
+``` ts
+longPressEvt.remove();
+```
     
  
