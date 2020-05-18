@@ -1,6 +1,7 @@
 {
   "name": "touchils",
   "version": "0.0.4",
+  "description": "Utils or event listeners for touch devices",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Yuxiang Zhang",
